@@ -1,0 +1,47 @@
+/************************************** Compiler Directives ********************************/
+#CATEGORY "46" "Esther"
+#SYMBOL_NAME "HEXtoDEC Serial"
+#DEFAULT_VOLATILE
+#ENABLE_STACK_CHECKING
+#ENABLE_TRACE
+// #ENCODING_ASCII
+// #ENCODING_UTF16
+                   
+
+#HELP_BEGIN
+This module converts HEX string to DEC string.
+
+HEX_in$  -	Has to be like : \xFF\x3A\x31\xE2... It's not possible to do it without the \x.
+
+DEC_out$ -	Outputs the DEX value in a string.
+
+To modify the S# program, open JetBrains Rider and also have installed Visual Studio with .NET Frameworks v4.7
+	
+#HELP_END
+
+
+/************************************ Include Libraries ************************************/
+#USER_SIMPLSHARP_LIBRARY "HEXtoDECinSERIAL"
+
+
+/******************* DIGITAL, ANALOG and SERIAL INPUTS and OUTPUTS ************************/
+ STRING_INPUT HEX_in$[65534];
+
+ STRING_OUTPUT DEC_out$;
+
+ ConversionHeXtoSerial ConvHEX;
+  
+
+/************************************* Event Handlers *************************************/
+ CHANGE HEX_in$
+ {
+    DEC_out$ = ConvHEX.ConvertHex(HEX_in$);
+ }
+         
+
+/****************************************  Main() *****************************************/
+Function Main()
+{
+    WaitForInitializationComplete();
+}
+
